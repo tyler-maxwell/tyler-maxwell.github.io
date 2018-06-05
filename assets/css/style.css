@@ -250,21 +250,6 @@ input[type=submit]:hover {
 
 /* responsive layout */
 
-@media screen and (max-width: 980px) {
-
-  .main-section {
-    width: 70%;
-  }
-
-}
-
-@media screen and (max-width: 768px) {
-
-  .main-section {
-    width: 100%;
-  }
-}
-
 @media screen and (max-width: 640px) {
 
   #masthead {
