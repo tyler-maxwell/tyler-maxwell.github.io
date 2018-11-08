@@ -1,0 +1,254 @@
+@import "bootstrap-compass";
+@import "bootstrap-variables";
+@import "bootstrap-sprockets";
+@import "bootstrap";
+@import "prettify";
+@import "base";
+
+#home-body {
+	background-color: $headings-color;
+}
+#home-logo {
+	max-width: 180px;
+	margin: 100px auto;
+	@include opacity(0.7);
+}
+#docs-body {
+	padding: 0 10%;
+	position: relative;
+	height: 100%;
+	overflow-y: scroll;
+	ul 	 { list-style: none; padding-left: 0; }
+	ol   {
+		&.list-alpha { 
+			list-style-type: upper-alpha;
+		}
+	}
+	hr 	 { margin: 50px 0; }
+	em 	 { display: inline-block; }
+
+	// Labels refine
+	.lb { @extend .label, .label-default; }
+	.lb2 { @extend .label, .label-info; }
+
+
+
+
+	h1, .h1 { 
+		letter-spacing: -8px;
+		font-size: 7em;
+		> small {
+			letter-spacing: 1px;
+			display: block;
+			color: $headings-color;
+			font-size: $font-size-large;
+			margin-top: 10px;
+			text-transform: uppercase;			
+		}		
+	}
+	h2, .h2 { 
+		letter-spacing: -3px;
+		> small {
+			letter-spacing: -1px;
+			display: block;
+			color: #ccc;
+			font-size: 50%;
+			margin-top: 20px;
+		}
+	}
+	h3, .h3 { 
+		letter-spacing: -2px;
+		.num {
+			@extend .label, .label-primary;
+			margin-right: 5px;
+			padding: 2px 8px;
+			background-color: $jumbotron-bg;
+			color: $headings-color;
+			letter-spacing: 0;
+		}
+	}
+	h4, .h4 {
+		letter-spacing: 0;
+		text-transform: uppercase;
+	}
+	h5, .h5 { letter-spacing: 0; }
+	a:focus { outline: none; }
+	p.lead { 
+		font-size: $font-size-large;
+		letter-spacing: -0.3px;
+		color: lighten($text-color,10%);
+		line-height: $line-height-base;
+	}
+	.button {
+		@extend .btn, .btn-lg, .btn-primary;
+		padding: 18px 30px;
+		text-transform: uppercase;
+		text-decoration: none;
+		font-size: $font-size-base;
+		border-radius: $border-radius-base;
+		@include transition( 0.15s ease );
+		&:hover {
+			background-color: darken($brand-primary, 10%);
+		}
+	}
+	ul.folders {
+		ul {
+			border-left: 1px solid $gray-lighter;
+			margin-left: 8px;
+			padding-left: 30px;
+		}
+		span {
+			color: lighten($headings-color,10%);
+			font-size: 15px;
+		}
+	}
+	#scrolltop {
+		width: 40px;
+		height: 40px;
+		position: fixed;
+		border: 0;
+		right: 20px;
+		bottom: 20px;
+		background-color: rgba($color2,0.25);
+		line-height: 45px;
+		padding: 0;
+		@include transition(0.3s);
+		@include scale(0);		
+		&:hover {
+			background-color: rgba($color2,0.5);
+		}
+		&.visible {
+			@include scale(1);
+		}
+	}
+	@include breakpoint(1600) { padding: 0; }	
+}
+
+#docs-nav {
+	width: $sidenav-width;
+	height: 100%;
+	position: fixed;
+	display: block;
+	top: 0; left: 0;
+	background-color: $sidenav-bg;
+	.logo {
+		> a {
+			display: block;
+			padding: 75px 30px;
+			text-align: center;
+			@include opacity(0.8);
+			@include transition( opacity 0.25s );
+			&:hover {
+				@include opacity(1.0);
+			}
+			&:focus { text-decoration: none; }
+			> img { width: 120px; }
+		}
+	}	
+	.nav {
+		width: $sidenav-width;
+		> li {
+			border-bottom: 1px solid rgba(255,255,255,0.1);
+			&:first-child {
+				border-top: 1px solid rgba(255,255,255,0.1);
+			}
+			> a {
+				color: darken($sidenav-link-color,10%);
+				font-weight: 700;
+				text-transform: uppercase;
+				padding: 10px 20px;
+				@include transition( background-color 0.3s );
+				@include transition( color 0.4s );
+				&:hover {
+					color: $sidenav-link-color;
+					background-color: $sidenav-link-hover-bg;
+				}
+				&:focus {
+					background-color: transparent;
+				}
+			}
+			> ul {
+				display: none;
+				height: 0;
+				overflow: hidden;
+
+				background: darken($sidenav-bg,5%);
+				padding: 20px;
+				box-shadow: 0 none;
+				border: 0;
+				width: 100%;
+				> li {
+					> a {
+						padding: 5px 20px;
+						color: darken($sidenav-link-color,15%);
+						font-size: $font-size-small;
+						font-weight: 700;
+						text-transform: none;
+						&:hover {
+							color: $sidenav-link-color;
+							text-decoration: none;
+						}
+					}
+					&.active > a {
+						color: $brand-primary;
+					}
+				}
+			}
+		}
+		> li.active {
+			> a { 
+				background-color: $sidenav-cat-link-bg;
+				color: $sidenav-link-color;
+			}
+			> ul {
+				display: block;
+				height: auto;
+			}		
+		}
+	}
+	@include breakpoint(999) {
+		display: none;
+	}	
+}
+
+#docs-main {
+	max-width: 1000px;
+	margin-left: $sidenav-width;
+	padding: 5%;
+	a {
+		text-decoration: underline;
+		&:hover { text-decoration: none; }
+	}	
+	> header {
+		@extend .text-center;
+		background-color: $jumbotron-bg;
+		margin-bottom: 0;
+		padding: 50px;
+		> h1 { margin-top: 0; }
+		.button {
+			min-width: 240px;
+			margin: 10px;	
+		}
+	}	
+	> section {
+ 		margin: 50px 0;
+ 		border-bottom: 1px solid $gray-lighter;
+ 		@include clearfix();
+ 		.section-block {
+ 			border-bottom: 1px solid $gray-lighter;
+ 			padding: 50px 0;
+ 			@include clearfix();
+ 			> *:first-child { margin-top: 0; }
+ 			> *:last-child  { margin-bottom: 0; }
+ 			&:last-child { border-bottom: 0; }
+ 			
+ 		}
+	}
+	@include breakpoint(1000) { margin-left: 0; }
+}
+
+
+a, button {
+	&:hover, &:focus, &:active { outline: none !important; }
+}
+.text-white { color: $text-white; }
