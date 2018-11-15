@@ -1018,12 +1018,18 @@ ol li::before {
   position: relative;
   margin-bottom: 2.6rem;
   display: inline-block;
+  padding-top: 10px;
 }
 
 .feedback-box .user-img img {
   height: 100px;
   width: 100px;
   border-radius: 50%;
+  transition: all 0.2s ease-in-out;
+}
+
+.feedback-box .user-img img:hover {
+  transform: scale(1.1);
 }
 
 .feedback-box .title a {
